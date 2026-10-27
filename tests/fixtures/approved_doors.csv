@@ -1,0 +1,10 @@
+door_id,required_rating,requirement_revision,source_reference,approved_by
+D-PASS,1 hr,SYNTHETIC-A,synthetic schedule,test author
+D-MISMATCH,90 min,SYNTHETIC-A,synthetic schedule,test author
+D-MISSING,60,SYNTHETIC-A,synthetic schedule,test author
+D-REVIEW,60,SYNTHETIC-A,synthetic schedule,test author
+D-DUP,60,SYNTHETIC-A,synthetic schedule,test author
+D-SCHEDULE-ONLY,60,SYNTHETIC-A,synthetic schedule,test author
+,60,SYNTHETIC-A,synthetic schedule,test author
+D-SCHEDULE-DUP,60,SYNTHETIC-A,synthetic schedule,test author
+ D-SCHEDULE-DUP ,60,SYNTHETIC-A,synthetic schedule,test author

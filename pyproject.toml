@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools==83.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openbim-qa"
+version = "0.2.0"
+description = "Local IFC door-rating reconciliation against an approved CSV schedule"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+ifc = ["ifcopenshell==0.8.5"]
+test = ["pytest==9.0.3"]
+
+[project.scripts]
+openbim-qa = "openbim_qa.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+cache_dir = "outputs/pytest-cache"

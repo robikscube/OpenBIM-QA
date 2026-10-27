@@ -1,0 +1,41 @@
+name: Python tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ['3.11', '3.12', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install package and test dependencies
+        run: python -m pip install -e ".[ifc,test]"
+
+      - name: Verify installed distribution and IFC dependency
+        run: |
+          python -c "import importlib.metadata as m; import openbim_qa, ifcopenshell, ifcopenshell.util.element; assert m.version('openbim-qa') == openbim_qa.__version__; print(openbim_qa.__version__, ifcopenshell.version)"
+          openbim-qa --version
+
+      - name: Run full test suite
+        run: python -m pytest -q
+
+      - name: Run installed single-model CLI
+        run: openbim-qa --ifc tests/fixtures/sample.ifc --schedule tests/fixtures/approved_doors.csv --mapping mapping.example.json --out outputs/demo
+
+      - name: Run installed revision CLI
+        run: openbim-qa --compare-from tests/fixtures/revision_a.ifc --compare-to tests/fixtures/revision_b.ifc --schedule-from tests/fixtures/revision_schedule_a.csv --schedule-to tests/fixtures/revision_schedule_b.csv --mapping mapping.example.json --out outputs/revision-demo
+
+      - name: Verify sample report summaries
+        run: |
+          python -c "import json; from pathlib import Path; r=json.loads(Path('outputs/demo/findings.json').read_text(encoding='utf-8')); assert r['summary'] == {'MISMATCH':1,'MISSING DATA':3,'PASS':1,'REVIEW REQUIRED':6,'UNMATCHED SCHEDULE':1,'UNREFERENCED MODEL':1}, r['summary']"
+          python -c "import json; from pathlib import Path; r=json.loads(Path('outputs/revision-demo/revision.json').read_text(encoding='utf-8')); assert r['report_schema_version'] == 2; assert r['summary'] == {'ADDED':1,'MODIFIED':3,'REMOVED':1,'UNCERTAIN':7,'UNCHANGED':4}, r['summary']"

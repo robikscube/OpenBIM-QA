@@ -1,0 +1,53 @@
+# Python environments and generated build/test files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+.venv*/
+venv/
+*.egg-info/
+dist/
+build/
+.coverage
+htmlcov/
+
+# BIM project inputs (only explicitly curated synthetic fixtures are public)
+*.rvt
+*.rfa
+*.rte
+*.ifc
+*.ifcxml
+*.ifczip
+!tests/fixtures/*.ifc
+!tests/fixtures/*.ifcxml
+!tests/fixtures/*.ifczip
+outputs/
+reports/
+*.sqlite
+*.db
+
+# Documentation kept locally: public repository uses only root README and test fixture provenance
+/product.md
+/technical.md
+/research-notes.md
+
+# Local agent notes, device-specific configuration, logs and secrets
+/CLAUDE.md
+/CHECKPOINT-*.md
+/checkpoint-*-brief.md
+/config.txt
+/run-codex-checkpoint.ps1
+codex-*.log
+*.log
+.env
+.env.*
+!.env.example
+*.local.json
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

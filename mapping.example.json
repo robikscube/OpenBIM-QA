@@ -1,0 +1,9 @@
+{
+  "door_id_source": "Tag",
+  "door_id_fallback": null,
+  "fire_rating_pset": "Pset_DoorCommon",
+  "fire_rating_property": "FireRating",
+  "numeric_rating_unit": "minutes",
+  "strict_matching": true,
+  "inherit_type_properties": false
+}

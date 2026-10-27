@@ -1,0 +1,13 @@
+door_id,required_rating,requirement_revision,source_reference
+STABLE,60,Rev-B,Synthetic stable
+DECREASE,90,Rev-B,Synthetic decrease
+FORMAT,60,Rev-B,Synthetic formatting
+REQUIREMENT,90,Rev-B,Synthetic requirement change
+MISSING,60,Rev-B,Synthetic missing rating
+RECREATED,60,Rev-B,Synthetic recreated element
+DUP-MARK,60,Rev-B,Synthetic duplicate model Mark
+ADDED,60,Rev-B,Synthetic added
+DUP-GUID-1,60,Rev-B,Synthetic duplicate GUID
+MISSING-GUID,60,Rev-B,Synthetic missing GUID
+DUP-SCHEDULE,60,Rev-B,Synthetic duplicate schedule row
+DUP-SCHEDULE,90,Rev-B,Synthetic duplicate schedule row
